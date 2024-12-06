@@ -26,3 +26,5 @@ Specification :
   * black: GND
   * green:  NTC temperature sensor 50K
   * blue & red:  TDS ( total dissolved solide) water quality teser sensor
+
+![alt text](https://github.com/piotrekstania/pico-ec-meter/blob/main/sensor/sensor.jpg)
