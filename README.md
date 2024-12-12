@@ -1,30 +1,23 @@
-# Water Electric Conductivity Hat for Raspberry Pi Pico 
-Simple water conductivity meter as hat to Raspberry Pi Pico. Works with original Pico/Pico 2 and Pico based WIZnet modules with built-in ethernet connectivity.
-Hat works with popular and cheap flow meter with NTC sensor and TDS probe.
+# Water Electric Conductivity Meter
+Simple water conductivity meter based on Raspberry Pi Pico.
+Module works with popular and cheap TDS probe with NTC sensor built-in.
 
 Project includes:
-* KiCad project of hat (schematic and pcb)
+* KiCad project of module (schematic and pcb)
 * Arduino code examples
 
-## Flow meter with NTC sensor and TDS probe 
+## TDS probe with NTC sensor 
 Specification : 
-* Function: Sensor , flow rate control
-* Connect pipe: ~ OD9 MM
-* Color :white
-* Flow rate: 0.3~10 L/min
-* Flow Pulse:  F(Hz)=21*Q + -2%  Q=LPM (L/min) (1260 p/L)
-* Max. Working Current: 15mA (DC5 V)
-* Min. Working Voltage: DC 4.5V
-* Working Voltage:DC 3V~18V
-* Load Capacity: = 10 mA (DC 5 V)
-* Pressure :<0.8mPa
-* Operating  Working  Temperature: 0..+80  Degree
-* Accuracy :+- 2%
-* Cable wire:
-  * red: +5V
-  * yellow: NPN signal output
-  * black: GND
-  * green:  NTC temperature sensor 50K
-  * blue & red:  TDS ( total dissolved solide) water quality teser sensor
+* Plastic Tube Probe diameter: 9.5 +/-0.2mm (3/8")
+* TDS pole material: SUS316
+* Measuring range: 0-9990 ppm(mg/l)
+* Resolution Ratio: 1 mg/l
+* Accuracy: +/-2%
+* Insulation resistance >50M
+* Medium temperature: 0..99 °C
+* Working tempeature: 0..120 °C
+* Operating voltage 0-24V
+* Working current <50 µA
+* Thermistor / Temperature sensor NTC: 10K
 
 ![alt text](https://github.com/piotrekstania/pico-ec-meter/blob/main/sensor/sensor.jpg)
