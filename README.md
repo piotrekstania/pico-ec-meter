@@ -1,6 +1,12 @@
-# Water Electric Conductivity Meter
-Simple water conductivity meter based on Raspberry Pi Pico.
+# Water Electric Conductivity Meter for RO systems
+Simple water conductivity meter based on Raspberry Pi Pico/2.
 Module works with popular and cheap TDS probe with NTC sensor built-in.
+
+Features:
+* measuring electric conductivity of water
+* thermal compensation
+* USB/Serial data output
+* 0..10V analog output for PLC
 
 Project includes:
 * KiCad project of module (schematic and pcb)
@@ -20,4 +26,4 @@ Specification :
 * Working current <50 µA
 * Thermistor / Temperature sensor NTC: 10K
 
-![alt text](https://github.com/piotrekstania/pico-ec-meter/blob/main/sensor/sensor.jpg)
+![alt text](https://github.com/piotrekstania/pico-ec-meter/blob/main/probe/probe.jpg)
