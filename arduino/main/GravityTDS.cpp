@@ -113,7 +113,6 @@ void GravityTDS::update() {
 
 	this->voltage = this->analogValue/this->adcRange*this->aref;
 
-  Serial.println(this->voltage, 3);
 
 	this->ecValue = (133.42*this->voltage*this->voltage*this->voltage - 255.86*this->voltage*this->voltage + 857.39*this->voltage) * this->kValue;
 
@@ -131,6 +130,10 @@ float GravityTDS::ecCompensation() {
   temp = round(temp);
   
   return f25[int(temp)];
+}
+
+float GravityTDS::getTemperature() {
+  return temperature;
 }
 
 

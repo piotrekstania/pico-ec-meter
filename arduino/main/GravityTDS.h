@@ -30,6 +30,7 @@ class GravityTDS {
     void update(); //read and calculate
     void setPin(int pin); 
     void setTemperature(float temp);  //set the temperature and execute temperature compensation
+    float getTemperature();
     void setAref(float value);  //reference voltage on ADC, default 5.0V on Arduino UNO
     void setAdcRange(float range);  //1024 for 10bit ADC;4096 for 12bit ADC
     void setKvalue(float k);
