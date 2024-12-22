@@ -2,10 +2,9 @@
 
 GravityTDS gravityTds;
 
+#include <SerialBT.h>
 
 void setup() {
-  Serial.begin(1000000);
-  while(!Serial);
 
   analogReadResolution(12);
 
@@ -16,6 +15,9 @@ void setup() {
   gravityTds.begin();  //initialization
 
   pinMode(27, INPUT);
+
+  SerialBT.setName("fogsys");
+  SerialBT.begin();
 
 }
 
@@ -53,12 +55,11 @@ void loop() {
   gravityTds.update();
 
 
-  Serial.print("EC: ");
-  Serial.print(gravityTds.getEcValue(), 2);
-  Serial.print(" µS/cm (");
-  Serial.print(gravityTds.getTemperature(), 1);
-  Serial.println(" °C)");
-  
+  SerialBT.print("EC: ");
+  SerialBT.print(gravityTds.getEcValue(), 2);
+  SerialBT.print(" µS/cm (");
+  SerialBT.print(gravityTds.getTemperature(), 1);
+  SerialBT.println(" °C)");
   
 
   delay(1000);
