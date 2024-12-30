@@ -111,6 +111,8 @@ void GravityTDS::update() {
 	
   this->analogValue /= 100.0;
 
+  Serial.println(analogValue);
+
 	this->voltage = this->analogValue/this->adcRange*this->aref;
 
 

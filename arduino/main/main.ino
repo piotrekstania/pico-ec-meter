@@ -4,7 +4,36 @@ GravityTDS gravityTds;
 
 #include <SerialBT.h>
 
+float ntc(uint8_t pin) {
+
+  pinMode(pin, INPUT);
+
+  float average = 0.0;
+
+  for (int i=0; i<100; i++) {
+     average += analogRead(pin);
+     delay(1);
+  }
+  
+  average /= 100.0;
+  average = 4095 / average - 1;
+  average = 10000.0 / average;   //R to Vcc
+
+  float steinhart;
+
+  steinhart = average / 10000.0;      // (R/Ro)
+  steinhart = log(steinhart);         // ln(R/Ro)
+  steinhart /= 3950.0;                // 1/B * ln(R/Ro)
+  steinhart += 1.0 / (25.0 + 273.15); // + (1/To)
+  steinhart = 1.0 / steinhart;        // Invert
+  steinhart -= 273.15;                // convert to C
+
+  return steinhart;
+}
+
 void setup() {
+
+  Serial.begin(1000000);
 
   analogReadResolution(12);
 
@@ -14,44 +43,14 @@ void setup() {
   gravityTds.setKvalue(0.039297597);
   gravityTds.begin();  //initialization
 
-  pinMode(27, INPUT);
-
   SerialBT.setName("fogsys");
   SerialBT.begin();
-
 }
 
 void loop() {
 
-   
-  //ntc----------------------------------------------
-  float ntc = 0.0;
-  
-  for(int i = 0; i< 100; i++) {
-    ntc += analogRead(27);
-    delay(1);
-  }
-  
-  ntc /= 100.0;         //average adc value
-  ntc = ntc/4096*3.3;   //voltage
 
-  ntc = ntc * (47000/(3.3-ntc));
-
-
-  float steinhart;
-  steinhart = ntc / 50000; // (R/Ro)
-  steinhart = log(steinhart); // ln(R/Ro)
-  steinhart /= 3950; // 1/B * ln(R/Ro)
-  steinhart += 1.0 / (25.0 + 273.15); // + (1/To)
-  steinhart = 1.0 / steinhart; // Invert
-  steinhart -= 273.15; // convert to C
-  ntc = steinhart;
-
-
-  //ntc----------------------------------------------
-
-
-  gravityTds.setTemperature(ntc);
+  gravityTds.setTemperature(ntc(27));
   gravityTds.update();
 
 
@@ -60,6 +59,12 @@ void loop() {
   SerialBT.print(" µS/cm (");
   SerialBT.print(gravityTds.getTemperature(), 1);
   SerialBT.println(" °C)");
+
+  Serial.print("EC: ");
+  Serial.print(gravityTds.getEcValue(), 2);
+  Serial.print(" µS/cm (");
+  Serial.print(gravityTds.getTemperature(), 1);
+  Serial.println(" °C)");
   
 
   delay(1000);
